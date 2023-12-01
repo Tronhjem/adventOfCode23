@@ -1,4 +1,6 @@
 import requests
+from datetime import datetime
+from sys import argv
 
 def WriteFileForDay(day, coookieToPass = ''):
     headers = {}
@@ -9,10 +11,10 @@ def WriteFileForDay(day, coookieToPass = ''):
     else:
         headers['Cookie'] = cookie
     
-    response = requests.get (f'https://adventofcode.com/2022/day/{str(day)}/input', headers=headers)
+    response = requests.get (f'https://adventofcode.com/2023/day/{str(day)}/input', headers=headers)
 
     if(response.status_code == 200):
-        with open(f'{day}.txt', "w+") as file:
+        with open(f'./data/{day}.txt', "w+") as file:
             file.write(response.content.decode())
 
         print("Wrote file " f'{day}.txt')
@@ -37,4 +39,17 @@ def MakeLinesFromStringToInt(lines):
     return lines
 
 
-WriteFileForDay(1)
+if __name__ == "__main__":
+    day = datetime.today().strftime('%d')
+    if day[0] == '0':
+        day = day[1]
+    
+    cookie = argv[1]
+    # cookie = 'session=53616c7465645f5f142775de060dd5d1a73f5c9830decf5353273581f0c5703898444b20bab2b9f58703b1d5ea22761f597cf57fe25de02bb863c591f63b8760'
+    if len(cookie) > 1:
+        WriteFileForDay(day, cookie)
+    else:
+        WriteFileForDay(day)
+
+    
+    

@@ -1,16 +1,23 @@
-// use std::fs::read;
+use std::io::Result;
 
-// fn read_file_vec(filepath: &str) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
-//     let data = read(filepath)?;
-//     Ok(data)
-// }
+mod read_lines;
+use read_lines::read_lines;
 
-fn main() 
+mod day_one;
+use day_one::first;
+use day_one::second;
+
+fn main() -> Result<()>
 {
-    // let result = read_file_vec("../../../1.txt");
-    // for line in result 
-    // {
-    //     println!("{}", line?);
-    // }
-    println!("hello");
+    let path = "/Users/christiantronhjem/dev/adventOfCode23/data/1.txt";
+    let lines: Vec<String> = read_lines(path);
+
+    // let result = first(&lines);
+    let result = second(&lines);
+    
+    println!("__________");
+    println!("result: {}", result);
+    println!("__________");
+    
+    Ok(())
 }

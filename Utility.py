@@ -41,6 +41,7 @@ def MakeLinesFromStringToInt(lines):
 
 if __name__ == "__main__":
     day = datetime.today().strftime('%d')
+    #day = '3'
     if day[0] == '0':
         day = day[1]
     

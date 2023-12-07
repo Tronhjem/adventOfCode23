@@ -1,2 +1,4 @@
 adventOfCodeRust/target/*
 .DS_STORE
+.idea
+venv/*
